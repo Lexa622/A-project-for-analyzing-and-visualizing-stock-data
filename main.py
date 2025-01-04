@@ -12,12 +12,16 @@ def main():
     ticker = input("Введите тикер акции (например, «AAPL» для Apple Inc):» ")
     period = input("Введите период для данных (например, '1mo' для одного месяца)"
                    "['1d', '5d', '1mo', '3mo', '6mo', '1y', '2y', '5y', '10y', 'ytd', 'max']: ")
+    threshold = float(input("Введите допустимый % колебания цены акции за заданный период: "))
 
     # Fetch stock data Получение данных о ценных бумагах
     stock_data = dd.fetch_stock_data(ticker, period)
 
     # Вычисляет и выводит среднюю цену закрытия акций за заданный период.
     dd.calculate_and_display_average_price(stock_data)
+
+    # Анализирует данные и уведомляет пользователя, если цена акций колебалась более чем на заданный процент за период.
+    dd.notify_if_strong_fluctuations(stock_data, threshold)
 
     # Add moving average to the data Добавьте скользящее среднее значение к данным
     stock_data = dd.add_moving_average(stock_data)
