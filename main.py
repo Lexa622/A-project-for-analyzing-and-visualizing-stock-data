@@ -16,6 +16,7 @@ def main():
     # Fetch stock data Получение данных о ценных бумагах
     stock_data = dd.fetch_stock_data(ticker, period)
 
+    # Вычисляет и выводит среднюю цену закрытия акций за заданный период.
     dd.calculate_and_display_average_price(stock_data)
 
     # Add moving average to the data Добавьте скользящее среднее значение к данным
