@@ -13,6 +13,7 @@ def main():
     period = input("Введите период для данных (например, '1mo' для одного месяца)"
                    "['1d', '5d', '1mo', '3mo', '6mo', '1y', '2y', '5y', '10y', 'ytd', 'max']: ")
     threshold = float(input("Введите допустимый % колебания цены акции за заданный период: "))
+    csv_export = input("Введите 'y' если сохранить данные в csv файл или 'n' если не сохранять: ")
 
     # Fetch stock data Получение данных о ценных бумагах
     stock_data = dd.fetch_stock_data(ticker, period)
@@ -22,6 +23,10 @@ def main():
 
     # Анализирует данные и уведомляет пользователя, если цена акций колебалась более чем на заданный процент за период.
     dd.notify_if_strong_fluctuations(stock_data, threshold)
+
+    # Позволяет сохранять загруженные данные об акциях в CSV файл
+    if csv_export == 'y':
+        dplt.export_data_to_csv(stock_data, f"{ticker}_{period}_stock_price_chart.csv")
 
     # Add moving average to the data Добавьте скользящее среднее значение к данным
     stock_data = dd.add_moving_average(stock_data)

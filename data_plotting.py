@@ -29,3 +29,9 @@ def create_and_save_plot(data, ticker, period, filename=None):
 
     plt.savefig(filename)
     print(f"График сохранен как {filename}")
+
+
+def export_data_to_csv(data, filename):
+    # Сохраняет загруженные данные об акциях в CSV файл
+    data.to_csv(filename)
+    print(f"Файл сохранен как {filename}")
