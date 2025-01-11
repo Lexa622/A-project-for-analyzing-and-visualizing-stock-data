@@ -30,6 +30,29 @@ def create_and_save_plot(data, ticker, period, filename=None):
     plt.savefig(filename)
     print(f"График сохранен как {filename}")
 
+    # График RSI
+    plt.figure(figsize=(10, 6))
+    plt.plot(data.index, data['RSI'], label='RSI', color='blue')
+    plt.axhline(70, linestyle='--', alpha=0.5, color='black')
+    plt.axhline(30, linestyle='--', alpha=0.5, color='black')
+    plt.title(f"RSI для {ticker}")
+    plt.xlabel("Дата")
+    plt.ylabel("RSI")
+    plt.legend()
+    plt.savefig(f"{ticker}_{period}_RSI_chart.png")
+    print(f"График RSI сохранен как {ticker}_{period}_RSI_chart.png")
+
+    # График MACD
+    plt.figure(figsize=(10, 6))
+    plt.bar(data.index, data['MACD'], label='MACD', color='blue')
+    plt.plot(data.index, data['Signal'], label='Signal Line', color='red')
+    plt.title(f"MACD для {ticker}")
+    plt.xlabel("Дата")
+    plt.ylabel("MACD")
+    plt.legend()
+    plt.savefig(f"{ticker}_{period}_MACD_chart.png")
+    print(f"График MACD сохранен как {ticker}_{period}_MACD_chart.png")
+
 
 def export_data_to_csv(data, filename):
     """Сохраняет загруженные данные об акциях в CSV файл"""

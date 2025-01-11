@@ -32,3 +32,23 @@ def notify_if_strong_fluctuations(data, threshold):
     price_fluctuation = (max(df) - min(df)) / max(df) * 100
     if price_fluctuation > threshold:
         print(f"Цена акций колебалась более чем на {threshold}% за период: {price_fluctuation:.{5}f}%")
+
+
+def add_rsi(data, rsi_period=14):
+    """Рассчитывает RSI."""
+    delta = data['Close'].diff()
+    gain = (delta.where(delta > 0, 0)).rolling(window=rsi_period).mean()
+    loss = (-delta.where(delta < 0, 0)).rolling(window=rsi_period).mean()
+
+    rs = gain / loss
+    data['RSI'] = 100 - (100 / (1 + rs))
+    return data
+
+
+def add_macd(data, fast_ema=12, slow_ema=26, signal_sma=9):
+    """Рассчитывает MACD."""
+    data['EMA_fast'] = data['Close'].ewm(span=fast_ema, adjust=False).mean()
+    data['EMA_slow'] = data['Close'].ewm(span=slow_ema, adjust=False).mean()
+    data['MACD'] = data['EMA_fast'] - data['EMA_slow']
+    data['Signal'] = data['MACD'].ewm(span=signal_sma, adjust=False).mean()
+    return data

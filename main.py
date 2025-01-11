@@ -28,8 +28,10 @@ def main():
     if csv_export == 'y':
         dplt.export_data_to_csv(stock_data, f"{ticker}_{period}_stock_price_chart.csv")
 
-    # Add moving average to the data Добавьте скользящее среднее значение к данным
+    # Add moving average to the data Добавьте скользящее среднее значение, RSI и MACD к данным
     stock_data = dd.add_moving_average(stock_data)
+    stock_data = dd.add_rsi(stock_data)  # Добавляем расчет RSI
+    stock_data = dd.add_macd(stock_data)  # Добавляем расчет MACD
 
     # Plot the data Построим график данных
     dplt.create_and_save_plot(stock_data, ticker, period)
