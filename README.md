@@ -6,3 +6,5 @@
 <img src="https://github.com/Lexa622/A-project-for-analyzing-and-visualizing-stock-data/blob/master/%25%20порога%20цены.png">
 <h5>Функция принимает DataFrame и имя файла, после чего сохраняет данные в указанный файл в CSV формате (по запросу пользователя).</h5>
 <img src="https://github.com/Lexa622/A-project-for-analyzing-and-visualizing-stock-data/blob/master/csv_export.png">
+<h5>Реализованы функции для расчёта и отображения на графике дополнительных технических индикаторов RSI и MACD.</h5>
+<img src="https://github.com/Lexa622/A-project-for-analyzing-and-visualizing-stock-data/blob/master/Индюки.png">
