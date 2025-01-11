@@ -3,8 +3,8 @@ import pandas as pd
 
 
 def create_and_save_plot(data, ticker, period, filename=None):
-    plt.figure(figsize=(10, 6))
-
+    plt.figure(figsize=(11, 7))
+    plt.subplot(3, 1, 1)
     if 'Date' not in data:
         if pd.api.types.is_datetime64_any_dtype(data.index):
             dates = data.index.to_numpy()
@@ -20,38 +20,30 @@ def create_and_save_plot(data, ticker, period, filename=None):
         plt.plot(data['Date'], data['Moving_Average'], label='Moving Average')
 
     plt.title(f"{ticker} Цена акций с течением времени")
-    plt.xlabel("Дата")
     plt.ylabel("Цена")
-    plt.legend()
+    plt.legend(loc='upper left')
+
+    # График RSI
+    plt.subplot(3, 1, 2)
+    plt.plot(data.index, data['RSI'], label='RSI', color='blue')
+    plt.axhline(70, linestyle='--', alpha=0.5, color='black')
+    plt.axhline(30, linestyle='--', alpha=0.5, color='black')
+    plt.ylabel("RSI")
+    plt.legend(loc='upper left')
+
+    # График MACD
+    plt.subplot(3, 1, 3)
+    plt.bar(data.index, data['MACD'], label='MACD', color='blue')
+    plt.plot(data.index, data['Signal'], label='Signal Line', color='red')
+    plt.xlabel("Дата")
+    plt.ylabel("MACD")
+    plt.legend(loc='upper left')
 
     if filename is None:
         filename = f"{ticker}_{period}_stock_price_chart.png"
 
     plt.savefig(filename)
     print(f"График сохранен как {filename}")
-
-    # График RSI
-    plt.figure(figsize=(10, 6))
-    plt.plot(data.index, data['RSI'], label='RSI', color='blue')
-    plt.axhline(70, linestyle='--', alpha=0.5, color='black')
-    plt.axhline(30, linestyle='--', alpha=0.5, color='black')
-    plt.title(f"RSI для {ticker}")
-    plt.xlabel("Дата")
-    plt.ylabel("RSI")
-    plt.legend()
-    plt.savefig(f"{ticker}_{period}_RSI_chart.png")
-    print(f"График RSI сохранен как {ticker}_{period}_RSI_chart.png")
-
-    # График MACD
-    plt.figure(figsize=(10, 6))
-    plt.bar(data.index, data['MACD'], label='MACD', color='blue')
-    plt.plot(data.index, data['Signal'], label='Signal Line', color='red')
-    plt.title(f"MACD для {ticker}")
-    plt.xlabel("Дата")
-    plt.ylabel("MACD")
-    plt.legend()
-    plt.savefig(f"{ticker}_{period}_MACD_chart.png")
-    print(f"График MACD сохранен как {ticker}_{period}_MACD_chart.png")
 
 
 def export_data_to_csv(data, filename):
