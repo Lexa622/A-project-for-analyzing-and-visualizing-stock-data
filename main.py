@@ -12,11 +12,13 @@ def main():
     ticker = input("Введите тикер акции (например, «AAPL» для Apple Inc):» ")
     period = input("Введите период для данных (например, '1mo' для одного месяца)"
                    "['1d', '5d', '1mo', '3mo', '6mo', '1y', '2y', '5y', '10y', 'ytd', 'max']: ")
+    start = input("Введите конкретную дату начала анализа(например, '1970-01-30'): ")
+    end = input("Введите конкретную дату окончания анализа(например, '2025-01-14'): ")
     threshold = float(input("Введите допустимый % колебания цены акции за заданный период: "))
     csv_export = input("Введите 'y' если сохранить данные в csv файл или 'n' если не сохранять: ")
 
     # Fetch stock data Получение данных о ценных бумагах
-    stock_data = dd.fetch_stock_data(ticker, period)
+    stock_data = dd.fetch_stock_data(ticker, period, start, end)
 
     # Вычисляет и выводит среднюю цену закрытия акций за заданный период.
     dd.calculate_and_display_average_price(stock_data)
