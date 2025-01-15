@@ -14,6 +14,15 @@ def main():
                    "['1d', '5d', '1mo', '3mo', '6mo', '1y', '2y', '5y', '10y', 'ytd', 'max']: ")
     start = input("Введите конкретную дату начала анализа(например, '1970-01-30'): ")
     end = input("Введите конкретную дату окончания анализа(например, '2025-01-14'): ")
+    chart_design_style = input("Введите стиль оформления графиков ('Solarize_Light2', '_classic_test_patch',"
+                               "'_mpl-gallery', '_mpl-gallery-nogrid', 'bmh', 'classic', 'dark_background',\n"
+                               "'fast', 'fivethirtyeight', 'ggplot', 'grayscale', 'petroff10', 'seaborn-v0_8',"
+                               "'seaborn-v0_8-bright', 'seaborn-v0_8-colorblind', 'seaborn-v0_8-dark',\n"
+                               "'seaborn-v0_8-dark-palette', 'seaborn-v0_8-darkgrid', 'seaborn-v0_8-deep',"
+                               "'seaborn-v0_8-muted', 'seaborn-v0_8-notebook', 'seaborn-v0_8-paper',\n"
+                               "'seaborn-v0_8-pastel', 'seaborn-v0_8-poster', 'seaborn-v0_8-talk',"
+                               "'seaborn-v0_8-ticks', 'seaborn-v0_8-white', 'seaborn-v0_8-whitegrid',"
+                               "'tableau-colorblind10'): ")
     threshold = float(input("Введите допустимый % колебания цены акции за заданный период: "))
     csv_export = input("Введите 'y' если сохранить данные в csv файл или 'n' если не сохранять: ")
 
@@ -36,7 +45,7 @@ def main():
     stock_data = dd.add_macd(stock_data)  # Добавляем расчет MACD
 
     # Plot the data Построим график данных
-    dplt.create_and_save_plot(stock_data, ticker, period)
+    dplt.create_and_save_plot(stock_data, ticker, period, chart_design_style)
 
 
 if __name__ == "__main__":
