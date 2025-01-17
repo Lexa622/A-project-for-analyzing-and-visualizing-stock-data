@@ -1,3 +1,5 @@
+from math import sqrt
+
 import yfinance as yf
 
 
@@ -23,6 +25,7 @@ def calculate_and_display_average_price(data):
     df = data['Close'].values
     average_closing_price = sum(df) / len(df)
     print(f"Средняя цена закрытия акций за заданный период: {average_closing_price:.{5}f}")
+    return average_closing_price
 
 
 def notify_if_strong_fluctuations(data, threshold):
@@ -51,4 +54,10 @@ def add_macd(data, fast_ema=12, slow_ema=26, signal_sma=9):
     data['EMA_slow'] = data['Close'].ewm(span=slow_ema, adjust=False).mean()
     data['MACD'] = data['EMA_fast'] - data['EMA_slow']
     data['Signal'] = data['MACD'].ewm(span=signal_sma, adjust=False).mean()
+    return data
+
+
+def st_dev(data):
+    """Стандартное отклонение цены закрытия"""
+    data['STDev'] = data['Close'].rolling(20, closed='left').std()
     return data

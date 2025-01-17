@@ -4,7 +4,7 @@ import pandas as pd
 
 def create_and_save_plot(data, ticker, period, chart_design_style, filename=None):
     plt.figure(figsize=(11, 7))
-    plt.subplot(3, 1, 1)
+    plt.subplot(4, 1, 1)
     plt.style.use(chart_design_style)
     if 'Date' not in data:
         if pd.api.types.is_datetime64_any_dtype(data.index):
@@ -25,7 +25,7 @@ def create_and_save_plot(data, ticker, period, chart_design_style, filename=None
     plt.legend(loc='upper left')
 
     # График RSI
-    plt.subplot(3, 1, 2)
+    plt.subplot(4, 1, 2)
     plt.plot(data.index, data['RSI'], label='RSI', color='blue')
     plt.axhline(70, linestyle='--', alpha=0.5, color='black')
     plt.axhline(30, linestyle='--', alpha=0.5, color='black')
@@ -33,11 +33,17 @@ def create_and_save_plot(data, ticker, period, chart_design_style, filename=None
     plt.legend(loc='upper left')
 
     # График MACD
-    plt.subplot(3, 1, 3)
+    plt.subplot(4, 1, 3)
     plt.bar(data.index, data['MACD'], label='MACD', color='blue')
     plt.plot(data.index, data['Signal'], label='Signal Line', color='red')
-    plt.xlabel("Дата")
     plt.ylabel("MACD")
+    plt.legend(loc='upper left')
+
+    # График стандартного отклонения цены закрытия
+    plt.subplot(4, 1, 4)
+    plt.plot(data.index, data['STDev'], label='STDev', color='red')
+    plt.xlabel("Дата")
+    plt.ylabel("STDev")
     plt.legend(loc='upper left')
 
     if filename is None:

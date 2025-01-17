@@ -43,6 +43,7 @@ def main():
     stock_data = dd.add_moving_average(stock_data)
     stock_data = dd.add_rsi(stock_data)  # Добавляем расчет RSI
     stock_data = dd.add_macd(stock_data)  # Добавляем расчет MACD
+    stock_data = dd.st_dev(stock_data)  # Добавляем расчет стандартного отклонения цены закрытия
 
     # Plot the data Построим график данных
     dplt.create_and_save_plot(stock_data, ticker, period, chart_design_style)
