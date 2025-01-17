@@ -11,3 +11,5 @@
 <h5>Реализован функционал: Улучшенное управление временными периодами.</h5>
 <h5>Модифицирован main.py для приёма дат начала и окончания, а также обеспечина передача этих параметров в fetch_stock_data.</h5>
 <img src="https://github.com/Lexa622/A-project-for-analyzing-and-visualizing-stock-data/blob/master/Улучшенное%20управление%20временными%20периодами.png">
+<h5>Возможность пользователю выбирать стиль оформления графика</h5>
+<img src="https://github.com/Lexa622/A-project-for-analyzing-and-visualizing-stock-data/blob/master/стиль%20оформления%20графика.png">
