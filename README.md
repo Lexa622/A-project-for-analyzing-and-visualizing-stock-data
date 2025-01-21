@@ -15,3 +15,5 @@
 <img src="https://github.com/Lexa622/A-project-for-analyzing-and-visualizing-stock-data/blob/master/стиль%20оформления%20графика.png">
 <h5>Расширенный анализ данных. Стандартное отклонение цены закрытия.</h5>
 <img src="https://github.com/Lexa622/A-project-for-analyzing-and-visualizing-stock-data/blob/master/Расширенный%20анализ%20данных.png">
+<h5>Интерактивный график с использованием bokeh. Функция принимает DataFrame и вычисляет среднее значение колонки 'Close'. Результат выводится в консоль.</h5>
+<img src="https://github.com/Lexa622/A-project-for-analyzing-and-visualizing-stock-data/blob/master/Интерактивный%20график.png">
