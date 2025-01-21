@@ -26,9 +26,8 @@ def main():
     threshold = float(input("Введите допустимый % колебания цены акции за заданный период: "))
     csv_export = input("Введите 'y' если сохранить данные в csv файл или 'n' если не сохранять: ")
 
-    # Fetch stock data Получение данных о ценных бумагах
+    # Fetch stock data Получение данных о ценных бумагах.
     stock_data = dd.fetch_stock_data(ticker, period, start, end)
-
     # Вычисляет и выводит среднюю цену закрытия акций за заданный период.
     dd.calculate_and_display_average_price(stock_data)
 
@@ -47,6 +46,8 @@ def main():
 
     # Plot the data Построим график данных
     dplt.create_and_save_plot(stock_data, ticker, period, chart_design_style)
+
+    dplt.create_and_save_bokeh(stock_data, ticker)
 
 
 if __name__ == "__main__":

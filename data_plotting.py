@@ -1,5 +1,26 @@
 import matplotlib.pyplot as plt
 import pandas as pd
+from bokeh.io import output_file
+from bokeh.plotting import figure, show
+
+
+def create_and_save_bokeh(data, ticker):
+    # Рисунок будет отображен в статическом HTML-файле
+    output_file(f'Интерактивный_график_{ticker}.html',
+                title=f'График цен закрытия {ticker}')
+    # Настройка объекта.
+    fig = figure(height=500,
+                 width=900,
+                 x_axis_label='Дата',
+                 y_axis_label='Цена закрытия',
+                 x_range=(data.index[0], data.index[-1]),
+                 title=f'Интерактивный график {ticker}')
+    # Координаты в линии.
+    fig.line(x=data.index, y=data['Close'], color='blue', line_width=1)
+    # Вывод в браузер.
+    show(fig)
+    average_close = data['Close'].mean()
+    print(f'Среднее значение колонки "Close": {average_close}')
 
 
 def create_and_save_plot(data, ticker, period, chart_design_style, filename=None):
